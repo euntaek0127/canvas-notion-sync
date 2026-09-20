@@ -4,13 +4,13 @@ from sync import CoursePage, assignment_type, build_properties, match_course, ne
 
 
 class SyncTests(unittest.TestCase):
-    def test_matches_emory_course_codes_with_inserted_campus_marker(self):
-        courses = [CoursePage("p1", "PHYS 125"), CoursePage("p2", "ECON 201")]
-        matched = match_course({"course_code": "PHYS_OX 125-1"}, courses)
-        self.assertEqual(matched, CoursePage("p1", "PHYS 125"))
+    def test_matches_course_codes_with_inserted_campus_marker(self):
+        courses = [CoursePage("p1", "BIO 101"), CoursePage("p2", "MATH 201")]
+        matched = match_course({"course_code": "BIO_X 101-1"}, courses)
+        self.assertEqual(matched, CoursePage("p1", "BIO 101"))
 
     def test_unmatched_course_returns_none(self):
-        courses = [CoursePage("p1", "PHYS 125")]
+        courses = [CoursePage("p1", "BIO 101")]
         self.assertIsNone(match_course({"course_code": "CHEM 150"}, courses))
 
     def test_assignment_type(self):
